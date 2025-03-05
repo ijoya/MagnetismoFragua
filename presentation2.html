@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion of a Double A Battery in a Copper Coil</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Motion of a Double A Battery in a Copper Coil</h1>
+    </header>
+
+    <main>
+        <!-- Part 1: System Parameters -->
+        <section>
+            <div>
+                <p>This presentation explains the motion of a double A battery with magnets at its ends inside a copper coil.</p>
+                <img src="image1.png" alt="Diagram of the coil and battery" width="800">
+                <p><strong>Figure 1:</strong> Diagram of the coil and battery.</p>
+                <p>Understanding the magnetic setup
+                    I'm piecing together the battery's configuration, with magnets at its ends, housed within a copper coil, causing movement. This setup likely indicates a simplified electric motor model.
+                    </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Part 1: System Parameters</h2>
+            <ul>
+                <li><strong>Coil Specifications</strong>:
+                    <ul>
+                        <li>Diameter: 1 inch (0.0254 m).</li>
+                        <li>Length: 10 m.</li>
+                        <li>Number of turns: 1000.</li>
+                        <li>Turns per meter: \( n = 100 \, \text{turns/m} \).</li>
+                    </ul>
+                </li>
+                <li><strong>Battery and Magnets</strong>:
+                    <ul>
+                        <li>Mass of the battery: \( m = 0.02 \, \text{kg} \).</li>
+                        <li>Magnetic field strength of each magnet: \( B = 0.1 \, \text{T} \).</li>
+                    </ul>
+                </li>
+                <li><strong>Coil Resistance</strong>:
+                    <ul>
+                        <li>Wire length: \( L_{\text{wire}} = N \cdot \pi D = 1000 \cdot \pi \cdot 0.0254 \approx 79.8 \, \text{m} \).</li>
+                        <li>Wire cross-sectional area: \( A_{\text{wire}} = \pi (0.0005)^2 \approx 7.85 \times 10^{-7} \, \text{m}^2 \).</li>
+                        <li>Resistivity of copper: \( \rho = 1.68 \times 10^{-8} \, \Omega\cdot\text{m} \).</li>
+                        <li>Total resistance: \( R = \rho \cdot \frac{L_{\text{wire}}}{A_{\text{wire}}} \approx 1.71 \, \Omega \).</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Part 2: Electromagnetic Induction -->
+        <section>
+            <h2>Part 2: Electromagnetic Induction</h2>
+            <p>The motion of the battery through the coil induces an electromotive force (EMF) given by Faraday's Law:</p>
+            <p class="formula">\[
+                \varepsilon = -B \cdot A \cdot n \cdot v,
+            \]</p>
+            <p>where:</p>
+            <ul>
+                <li>\( A = \pi r^2 = \pi (0.0127)^2 \approx 0.0005067 \, \text{m}^2 \) (cross-sectional area of the coil).</li>
+                <li>\( v \) = velocity of the battery.</li>
+            </ul>
+            <p>The induced current is:</p>
+            <p class="formula">\[
+                I = \frac{\varepsilon}{R} = \frac{B \cdot A \cdot n \cdot v}{R}.
+            \]</p>
+            <p>According to Lenz's Law, the induced current opposes the motion of the battery.</p>
+        </section>
+
+        <!-- Part 3: Damping Force -->
+        <section>
+            <h2>Part 3: Damping Force</h2>
+            <p>The interaction between the magnetic field and the induced current creates a damping force:</p>
+            <p class="formula">\[
+                F = \frac{B^2 \cdot A^2 \cdot n^2}{R} \cdot v = k \cdot v,
+            \]</p>
+            <p>where:</p>
+            <ul>
+                <li>\( k = \frac{B^2 \cdot A^2 \cdot n^2}{R} \approx 1.5 \times 10^{-5} \, \text{N·s/m} \).</li>
+            </ul>
+            <p>Applying Newton's Second Law:</p>
+            <p class="formula">\[
+                m \frac{dv}{dt} = -k \cdot v.
+            \]</p>
+            <p>The solution for velocity as a function of time is:</p>
+            <p class="formula">\[
+                v(t) = v_0 \cdot e^{-(k/m) \cdot t}.
+            \]</p>
+            <p>Integrating the velocity equation gives the position:</p>
+            <p class="formula">\[
+                x(t) = \frac{v_0 \cdot m}{k} \left( 1 - e^{-(k/m) \cdot t} \right).
+            \]</p>
+        </section>
+
+        <!-- Part 4: Numerical Example -->
+        <section>
+            <h2>Part 4: Numerical Example</h2>
+            <ul>
+                <li><strong>Initial Conditions</strong>:
+                    <ul>
+                        <li>Initial velocity: \( v_0 = 1 \, \text{m/s} \).</li>
+                        <li>Time constant: \( \tau = \frac{m}{k} \approx 1333.33 \, \text{s} \).</li>
+                    </ul>
+                </li>
+                <li><strong>Time to Exit the Coil</strong>:
+                    <ul>
+                        <li>The battery exits the coil when \( x(t_{\text{exit}}) = 10 \, \text{m} \):</li>
+                        <li>\( t_{\text{exit}} \approx 10.04 \, \text{s} \).</li>
+                    </ul>
+                </li>
+                <li><strong>Velocity at Exit</strong>:
+                    <ul>
+                        <li>\( v_{\text{exit}} = v_0 \cdot e^{-(k/m) \cdot t_{\text{exit}}} \approx 0.9925 \, \text{m/s} \).</li>
+                    </ul>
+                </li>
+                <li><strong>Motion Outside the Coil</strong>:
+                    <ul>
+                        <li>After exiting the coil, the battery moves with constant velocity \( v_{\text{exit}} \).</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Graph -->
+        <section>
+            <h2>Position vs Time Graph</h2>
+            <canvas id="motionChart"></canvas>
+            <p class="caption">Exponential damping inside the coil (\( t \leq 10.04 \, \text{s} \)), constant velocity outside.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 - Physics Demonstration</p>
+    </footer>
+
+    <script>
+        // Motion Chart
+        const ctx = document.getElementById('motionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => (i * 0.2).toFixed(1)),
+                datasets: [{
+                    label: 'Position (m)',
+                    data: Array.from({length: 100}, (_, i) => 10 * (1 - Math.exp(-0.1 * i * 0.2))),
+                    borderColor: '#2ecc71',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    x: { title: { display: true, text: 'Time (s)' } },
+                    y: { title: { display: true, text: 'Position (m)' } }
+                }
+            }
+        });
+    </script>
+
+    <style>
+        /* Custom CSS Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size:larger;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background: #2ecc71;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2ecc71;
+        }
+
+        .formula {
+            font-size: 1.2rem;
+            padding: 10px;
+            background: #f1f3f5;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .caption {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</body>
+</html>
